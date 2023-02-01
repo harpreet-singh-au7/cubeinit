@@ -1,0 +1,22 @@
+version: '2.2'
+
+services:
+  cube:
+    image: cubejs/cube:latest
+    ports:
+      - 4000:4000
+    environment:
+      - CUBEJS_DB_TYPE=mysql
+      - CUBEJS_DEV_MODE=true
+      - CUBEJS_DB_HOST=host.docker.internal
+      - CUBEJS_DB_USER=root
+      - CUBEJS_DB_PASS=password
+      - CUBEJS_DB_NAME=mysql-employee-db
+      - CUBEJS_APP_PORT=33060
+
+    volumes:
+      - .:/cube/conf
+  database:
+    image: mysql-employee-db
+    environment:
+      - MYSQL_ROOT_PASSWORD=pass
